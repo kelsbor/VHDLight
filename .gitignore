@@ -1,0 +1,5 @@
+*.cf
+*.vcd
+*.ghw
+db/
+output_files/
