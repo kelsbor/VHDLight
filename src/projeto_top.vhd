@@ -20,8 +20,7 @@ entity projeto_top is
         KEY      : in  std_logic_vector(3 downto 0); -- Botões (KEY(0) = controle, KEY(3) = reset)
         SW       : in  std_logic_vector(17 downto 0); -- Chaves (SW(0) = sensor de luz)
         LEDG     : out std_logic_vector(8 downto 0);  -- LEDs Verdes (LEDG(0) = Meia Luz)
-        LEDR     : out std_logic_vector(17 downto 0); -- LEDs Vermelhos (LEDR(0) = Luz Total)
-        GPIO     : out std_logic_vector(35 downto 0)  -- Saída para expansão (GPIO(0) = Sinal PWM)
+        LEDR     : out std_logic_vector(17 downto 0) -- LEDs Vermelhos (LEDR(0) = Luz Total)
     );
 end entity;
 
@@ -115,7 +114,7 @@ begin
     -- Define o Duty Cycle baseado no estado da FSM:
     -- OFF: 0 (0%), MEIA: 128 (50%), TOTAL: 255 (100%)
     pwm_duty <= x"FF" when led_r_int = '1' else
-                x"80" when led_v_int = '1' else
+                x"40" when led_v_int = '1' else
                 x"00";
 
     pwm_gen_inst: entity work.pwm_generator
